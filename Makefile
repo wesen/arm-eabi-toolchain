@@ -42,10 +42,10 @@ OPT_NEWLIB_SIZE ?= true
 ####    PRIMARY TOOLCHAIN VERSIONS    #####
 
 CS_MAJ		?= 2012
-CS_MIN		?= 03
+CS_MIN		?= 09
 CS_BASE		?= $(CS_MAJ).$(CS_MIN)
-CS_REV 		?= 56
-GCC_VERSION 	?= 4.6
+CS_REV 		?= 63
+GCC_VERSION 	?= 4.7
 MPC_VERSION 	?= 0.8.1
 SOURCE_PACKAGE	?= 10384
 BIN_PACKAGE	?= 10385
@@ -139,7 +139,7 @@ downloadsrc: $(LOCAL_SOURCE)
 	[ "$$t1" = "$(SOURCE_MD5_CHCKSUM)" ] || \
 	( echo "Bad Checksum! Please remove the following file and retry: $(LOCAL_SOURCE)" && false ))
 
-$(LOCAL_BASE)/%-$(CS_VERSION).tar.bz2 : downloadsrc
+$(LOCAL_BASE)/%-$(CS_VERSION).tar.bz2 : 
 ifeq ($(USER),root)
 	@(tgt=`tar -jtf $(LOCAL_SOURCE) | grep  $*` && \
 	sudo -u $(SUDO_USER) tar -jxvf $(LOCAL_SOURCE) $$tgt)
