@@ -290,14 +290,14 @@ else
 NEWLIB_FLAGS?="-g -O2 -fno-unroll-loops"
 endif
 
-cross-newlib: cross-binutils cross-gcc-first newlib-$(CS_BASE)
+cross-newlib: newlib-$(CS_BASE)
 	mkdir -p build/newlib && cd build/newlib && \
 	pushd ../../newlib-$(CS_BASE) ; \
 	make clean ; \
 	popd ; \
 	../../newlib-$(CS_BASE)/configure --prefix=$(PREFIX)	\
 	--target=$(TARGET) --disable-newlib-supplied-syscalls	\
-	--disable-libgloss --disable-nls	\
+	--disable-nls	\
 	--with-build-time-tools="$(PREFIX)/bin"       \
 	--enable-newlib-io-long-long --enable-newlib-register-fini && \
 	$(MAKE) -j$(PROCS) CFLAGS_FOR_TARGET=$(NEWLIB_FLAGS) CCASFLAGS=$(NEWLIB_FLAGS) && \
